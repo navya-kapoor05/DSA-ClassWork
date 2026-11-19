@@ -2,14 +2,12 @@
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
 
-        // Create adjacency list
         List<List<Integer>> adj = new ArrayList<>();
 
         for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
-        // Calculate indegree
         int[] indegree = new int[numCourses];
 
         for (int[] p : prerequisites) {
@@ -22,7 +20,6 @@ class Solution {
             indegree[course]++;
         }
 
-        // Add courses with indegree 0 to queue
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
@@ -33,7 +30,7 @@ class Solution {
 
         int completed = 0;
 
-        // BFS
+
         while (!q.isEmpty()) {
 
             int curr = q.poll();
@@ -50,7 +47,7 @@ class Solution {
             }
         }
 
-        // If all courses can be completed
+  
         return completed == numCourses;
     }
 }
