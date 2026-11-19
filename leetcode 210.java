@@ -2,14 +2,12 @@
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
 
-        // Create adjacency list
         List<List<Integer>> adj = new ArrayList<>();
 
         for (int i = 0; i < numCourses; i++) {
             adj.add(new ArrayList<>());
         }
 
-        // Calculate indegree
         int[] indegree = new int[numCourses];
 
         for (int[] p : prerequisites) {
@@ -22,7 +20,6 @@ class Solution {
             indegree[course]++;
         }
 
-        // Add courses with indegree 0
         Queue<Integer> q = new LinkedList<>();
 
         for (int i = 0; i < numCourses; i++) {
@@ -31,11 +28,9 @@ class Solution {
             }
         }
 
-        // Store course ordering
         int[] order = new int[numCourses];
         int index = 0;
 
-        // BFS
         while (!q.isEmpty()) {
 
             int curr = q.poll();
@@ -53,7 +48,6 @@ class Solution {
             }
         }
 
-        // Check for cycle
         if (index != numCourses) {
             return new int[0];
         }
